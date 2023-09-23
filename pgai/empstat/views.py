@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Employee
+from .models import Employee,Fuelconsumption
 from django.db.models import Count
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -20,7 +20,7 @@ def ml_features(request):
     return render(request, 'pgai/ml_features.html', context)
 
 def data_analysis(request):
-    data = Employee.objects.all()
+    data = Fuelconsumption.objects.all()
     analysis_results = analyze_data(data)
     context = {
         'analysis_result': analysis_results,
@@ -42,7 +42,7 @@ def analyze_data(data):
         is_discrete_to_show = False
         is_number = False
         distinct_values = list()
-        count_of_col = Employee.objects.count()
+        count_of_col = Fuelconsumption.objects.count()
         chart_filename = 'image.png'
 
 
@@ -53,7 +53,7 @@ def analyze_data(data):
                 is_discrete_to_show = True
                         # Generate a bar chart for discrete columns
                 if distinct_values:
-                    plt.figure(figsize=(10, 6))
+                    plt.figure(figsize=(15, 6))
                     plt.bar(distinct_values, [data.filter(**{column_name: val}).count() for val in distinct_values])
                     plt.title(f'Distinct Values Count for {column_name}')
                     plt.xlabel(column_name)

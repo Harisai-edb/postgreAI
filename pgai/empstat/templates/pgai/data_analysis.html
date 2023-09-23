@@ -24,14 +24,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% for column_info in analysis_result %}
-        {% if column_info.distinct_values %}
-            {% if column_info.is_discrete_to_show %}
-         
-                <h2>{{ column_info.distinct_values }} </h2>
-                {% endif %}
-        {% endif %}
-    {% endfor %}
+ 
 
     {% for column_info in analysis_result %}
         {% if column_info.is_discrete_to_show %}
