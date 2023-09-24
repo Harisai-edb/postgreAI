@@ -2,11 +2,11 @@
 
 <h1>Machine Learning Features</h1>
 
-<h2>Count of Employees: {{ employee_count }}</h2>
+<h2>Count of total records: {{ records_count }}</h2>
 
-<h2>Department-wise Employee Counts:</h2>
+<h2>Station-city-wise records Counts:</h2>
 <ul>
-    {% for department in departments %}
-        <li>{{ department.department }}: {{ department.count }}</li>
+    {% for sc in station_cities %}
+        <li>{{ sc.Station_City }}: {{ sc.count }}</li>
     {% endfor %}
 </ul>

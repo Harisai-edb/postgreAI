@@ -6,4 +6,6 @@ from . import views
 urlpatterns = [
     path('ml-features/', views.ml_features, name='ml_features'),
     path('data_analysis/', views.data_analysis, name='data_analysis'), 
+    path('timeseries_analysis/', views.timeseries_analysis, name='timeseries_analysis'), 
+    
 ]

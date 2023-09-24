@@ -28,4 +28,27 @@ class Fuelconsumption(models.Model):
 
     def __str__(self):
         return self.model
+    
+
+class WeatherData(models.Model):
+    Precipitation = models.DecimalField(max_digits=5, decimal_places=2)
+    Date_Full = models.DateField()
+    Date_Month = models.IntegerField()
+    Date_Week_of = models.IntegerField()
+    Date_Year = models.IntegerField()
+    Station_City = models.CharField(max_length=255)
+    Station_Code = models.CharField(max_length=255)
+    Station_Location = models.CharField(max_length=255)
+    Station_State = models.CharField(max_length=255)
+    Temperature_Avg = models.DecimalField(max_digits=5, decimal_places=2)
+    Temperature_Max = models.DecimalField(max_digits=5, decimal_places=2)
+    Temperature_Min = models.DecimalField(max_digits=5, decimal_places=2)
+    Wind_Direction = models.CharField(max_length=255)
+    Wind_Speed = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.Date_Full} - {self.Station_Location}"
+
+    class Meta:
+        verbose_name_plural = "Weather Data"
 
