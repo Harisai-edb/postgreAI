@@ -110,11 +110,12 @@ def analyze_timeseries_data(data):
         if column_type == 'CharField' or column_type == 'TextField':
             is_discrete_string = True
             distinct_values = data.values_list(column_name, flat=True).distinct()
-            if len(distinct_values) <= 0.1 * count_of_col:
+            # if len(distinct_values) <= 0.1 * count_of_col and len(distinct_values) <= 55:
+            if  len(distinct_values) <= 55:
                 is_discrete_to_show = True
                         # Generate a bar chart for discrete columns
                 if distinct_values:
-                    plt.figure(figsize=(15, 6))
+                    plt.figure(figsize=(25, 6))
                     plt.bar(distinct_values, [data.filter(**{column_name: val}).count() for val in distinct_values])
                     plt.title(f'Distinct Values Count for {column_name}')
                     plt.xlabel(column_name)

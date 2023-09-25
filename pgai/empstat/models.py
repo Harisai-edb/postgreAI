@@ -33,9 +33,6 @@ class Fuelconsumption(models.Model):
 class WeatherData(models.Model):
     Precipitation = models.DecimalField(max_digits=5, decimal_places=2)
     Date_Full = models.DateField()
-    Date_Month = models.IntegerField()
-    Date_Week_of = models.IntegerField()
-    Date_Year = models.IntegerField()
     Station_City = models.CharField(max_length=255)
     Station_Code = models.CharField(max_length=255)
     Station_Location = models.CharField(max_length=255)
