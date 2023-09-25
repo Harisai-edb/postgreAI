@@ -35,8 +35,10 @@
 
     {% for column_info in analysis_result %}
         {% if column_info.timestamp_column and column_info.chart_filename %}
-            <h2>{{ column_info.column_name }} Over Time(Only New York City)</h2>
-            <img src="{% static 'pgai/'|add:column_info.chart_filename %}" alt="{{ column_info.column_name }} Over Time Chart">
+            
+                <h2>{{ column_info.column_name }} Over year {{column_info.year}}</h2>
+                <img src="{% static 'pgai/'|add:column_info.chart_filename %}" alt="{{ column_info.column_name }} Over Time Chart">
+            
         {% endif %}
     {% endfor %}
 

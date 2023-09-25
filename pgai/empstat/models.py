@@ -49,3 +49,30 @@ class WeatherData(models.Model):
     class Meta:
         verbose_name_plural = "Weather Data"
 
+class Sales(models.Model):
+    ordernumber = models.IntegerField()
+    quantityordered = models.IntegerField()
+    priceeach = models.DecimalField(max_digits=5, decimal_places=2)
+    # orderlinenumber = models.IntegerField()
+    sales = models.DecimalField(max_digits=10, decimal_places=2)
+    orderdate = models.DateField()
+    status = models.CharField(max_length=25)
+    # qtr_id = models.IntegerField()
+    # month_id = models.IntegerField()
+    year_id = models.IntegerField()
+    productline = models.CharField(max_length=25)
+    msrp = models.IntegerField()
+    productcode = models.CharField(max_length=10)
+    customername = models.TextField()
+    city = models.CharField(max_length=25)
+    # state = models.CharField(max_length=25, null= True)
+    country = models.CharField(max_length=25)
+    contactlastname = models.CharField(max_length=25)
+    contactfirstname = models.CharField(max_length=25)
+    dealsize = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.ordernumber
+
+    class Meta:
+        verbose_name_plural = "Sales data"
