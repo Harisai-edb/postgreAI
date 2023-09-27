@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project_title }}</title>
+</head>
+<body>
+    <h1>{{ project_title }}</h1>
+    <h3>{{ subtitle }}</h3>
+
+    <section>
+        <h2>Data Analysis</h2>
+        <p>{{ data_analysis_description }}</p>
+        <a href="{% url 'model_list' %}">Explore Data Analysis</a>
+    </section>
+
+    <section>
+        <h2>Forecasting</h2>
+        <p>{{ forecasting_description }}</p>
+        <!-- Add a link to the forecasting page here if needed -->
+    </section>
+</body>
+</html>

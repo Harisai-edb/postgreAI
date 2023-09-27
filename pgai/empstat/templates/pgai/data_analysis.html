@@ -1,4 +1,3 @@
-<!-- ml_app/templates/ml_app/data_analysis.html -->
 {% load static %}
 
 <h1>Data Analysis</h1>
@@ -24,14 +23,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% for column_info in analysis_result %}
-        {% if column_info.distinct_values %}
-            {% if column_info.is_discrete_to_show %}
-         
-                <h2>{{ column_info.distinct_values }} </h2>
-                {% endif %}
-        {% endif %}
-    {% endfor %}
+ 
 
     {% for column_info in analysis_result %}
         {% if column_info.is_discrete_to_show %}
@@ -41,7 +33,18 @@
         {% endif %}
     {% endfor %}
 
+    {% for column_info in analysis_result %}
+        {% if column_info.timestamp_column and column_info.chart_filename %}
+            <h2>{{ column_info.column_name }} Over Time(Only New York City)</h2>
+            <img src="{% static 'pgai/'|add:column_info.chart_filename %}" alt="{{ column_info.column_name }} Over Time Chart">
+        {% endif %}
+    {% endfor %}
 
 {% else %}
     <p>{{ analysis_result }}</p>
+
+    
 {% endif %}
+
+
+<a href="{% url 'model_list' %}">Back to Model List</a>
