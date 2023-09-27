@@ -1,8 +1,16 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html>
+
+<div class="homebutton">
+    <a href="{ % url 'home' %}">Home</a>
+    </div>
+
 <head>
     <title>{{ project_title }}</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" >
 </head>
 <body>
     <div class="background">
