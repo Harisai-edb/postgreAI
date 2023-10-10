@@ -27,7 +27,7 @@
 
     {% for column_info in analysis_result %}
         {% if column_info.is_discrete_to_show %}
-        <h2>{{ column_info.column_name }} Distinct Values</h2>
+        <h2>{{ column_info.column_name }} Distribution</h2>
             <img src="{% static 'pgai/'|add:column_info.chart_filename %}" alt="{{ column_info.column_name }} Distinct Values Chart">
          
         {% endif %}
