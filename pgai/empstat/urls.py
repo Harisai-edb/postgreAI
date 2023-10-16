@@ -12,7 +12,12 @@ urlpatterns = [
     path('model_list/', views.model_list, name='model_list'),
     path('model_details/<str:model_name>/', views.model_details, name='model_details'),
     path('data_analysis/<str:model_name>/', views.data_analysis_model, name='data_analysis_model'),
-
-    
-    
+    path('forecasting/', views.forecasting, name='forecasting'),
+    path('Sales_Pridiction/<str:model_name>/', views.Sales_Pridiction, name='Sales_Pridiction'),
+    path('Capacity_Planing/<str:model_name>/', views.Capacity_Planing, name='Capacity_Planing'),
+    path('Future_trends/<str:model_name>/', views.Future_trends, name='Future_trends'),
+    path('Stockmarket_prediction/<str:model_name>/', views.Stockmarket_prediction, name='Stockmarket_prediction'),
+    path('shampoo_sales_prediction/', views.shampoo_sales_prediction, name='shampoo_sales_prediction'),
+    path('disk_usage_prediction/', views.disk_usage_prediction, name='disk_usage_prediction'),
+   
 ]

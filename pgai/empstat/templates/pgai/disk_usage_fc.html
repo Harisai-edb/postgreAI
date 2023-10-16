@@ -1,0 +1,12 @@
+{% load static %}
+
+<h1>Disk Usage Capacity Planing</h1>
+
+
+<img src="{% static 'pgai/'|add:chart_filename %}" alt="{{ Sales }} Disk Usage For 3 Years">
+
+
+<img src="{% static 'pgai/'|add:fc_chart %}" alt="{{ fc_chart }} Forecasted Disk Usage For Last 1 Year">
+
+
+

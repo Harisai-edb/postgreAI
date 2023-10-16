@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disk Usage Details</title>
+</head>
+<body>
+    <h1>Disk Usage Detail: {{ model_name }}</h1>
+    
+    <h2>Sample Data Frame</h2>
+    {{ data_frame|safe }}
+    
+    <h2>Summary Statistics</h2>
+    {{ describe|safe }}
+    
+    <h2>Data Frame Info</h2>
+    <pre>{{ info|safe }}</pre>
+    
+    <a href="{% url 'disk_usage_prediction' %}">Disk Usage Forecasting</a>
+
+
+</body>
+</html>

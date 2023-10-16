@@ -1,0 +1,12 @@
+{% load static %}
+
+<h1>Shampoo Sales Forecasting</h1>
+
+
+<img src="{% static 'pgai/'|add:chart_filename %}" alt="{{ Sales }} Shampoo Sales For 3 Years">
+
+
+<img src="{% static 'pgai/'|add:fc_chart %}" alt="{{ fc_chart }} Forecasted Shampoo Sales For Last 1 Year">
+
+
+
