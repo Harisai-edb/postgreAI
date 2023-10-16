@@ -7,6 +7,10 @@ import os
 from django.apps import apps
 from io import StringIO
 from django.urls import reverse
+from pandas import read_csv
+from pandas.plotting import autocorrelation_plot
+from pandas import DataFrame
+from statsmodels.tsa.arima.model import ARIMA
 
 
 def home(request):
@@ -429,3 +433,129 @@ def analyze_sales_data(data):
 
     return columns_info
 
+
+def forecasting(request):
+    # shows forecasting abilities
+    forecasting_abilities = ["Sales_Pridiction","Capacity_Planing","Future_trends","Stockmarket_prediction"]
+    model_data = []
+    for ability in forecasting_abilities:
+        model_data.append({
+            'model_name': ability,
+            'model_url': reverse(ability,args=[ability])
+        })
+    # Pass the list of model names to the template
+    context = {
+        'models': model_data,
+    }
+
+    return render(request, 'pgai/forecasting.html', context)
+
+def Sales_Pridiction(request,model_name):
+    
+    shampoo_sales = [ { "Month": "1-01", "Sales": 266.0 }, { "Month": "1-02", "Sales": 145.9 }, { "Month": "1-03", "Sales": 183.1 }, { "Month": "1-04", "Sales": 119.3 }, { "Month": "1-05", "Sales": 180.3 }, { "Month": "1-06", "Sales": 168.5 }, { "Month": "1-07", "Sales": 231.8 }, { "Month": "1-08", "Sales": 224.5 }, { "Month": "1-09", "Sales": 192.8 }, { "Month": "1-10", "Sales": 122.9 }, { "Month": "1-11", "Sales": 336.5 }, { "Month": "1-12", "Sales": 185.9 }, { "Month": "2-01", "Sales": 194.3 }, { "Month": "2-02", "Sales": 149.5 }, { "Month": "2-03", "Sales": 210.1 }, { "Month": "2-04", "Sales": 273.3 }, { "Month": "2-05", "Sales": 191.4 }, { "Month": "2-06", "Sales": 287.0 }, { "Month": "2-07", "Sales": 226.0 }, { "Month": "2-08", "Sales": 303.6 }, { "Month": "2-09", "Sales": 289.9 }, { "Month": "2-10", "Sales": 421.6 }, { "Month": "2-11", "Sales": 264.5 }, { "Month": "2-12", "Sales": 342.3 }, { "Month": "3-01", "Sales": 339.7 }, { "Month": "3-02", "Sales": 440.4 }, { "Month": "3-03", "Sales": 315.9 }, { "Month": "3-04", "Sales": 439.3 }, { "Month": "3-05", "Sales": 401.3 }, { "Month": "3-06", "Sales": 437.4 }, { "Month": "3-07", "Sales": 575.5 }, { "Month": "3-08", "Sales": 407.6 }, { "Month": "3-09", "Sales": 682.0 }, { "Month": "3-10", "Sales": 475.3 }, { "Month": "3-11", "Sales": 581.3 }, { "Month": "3-12", "Sales": 646.9 } ]
+    shampoo_sales_df = pd.DataFrame(shampoo_sales)
+
+    # Calculate summary statistics (describe)
+    describe_data = shampoo_sales_df.describe()
+
+    # Capture the output of df.info() as a string
+    info_output = StringIO()
+    shampoo_sales_df.info(buf=info_output)
+    info_data = info_output.getvalue()
+    info_output.close()
+
+
+
+    # Pass the model details to the template
+    context = {
+        'model_name': model_name,
+        'data_frame': shampoo_sales_df.head().to_html(classes='table table-striped table-bordered table-sm'),
+        'describe': describe_data.to_html(classes='table table-striped table-bordered table-sm'),
+        'info': info_data,
+    }
+
+    return render(request,'pgai/Sales_Pridiction.html', context)
+
+def Capacity_Planing(request,model_name):
+    
+    disk_usage = [{"Month":"1-01","Usage":212},{"Month":"1-02","Usage":230},{"Month":"1-04","Usage":238},{"Month":"1-03","Usage":251},{"Month":"1-05","Usage":269},{"Month":"1-06","Usage":276},{"Month":"1-07","Usage":287},{"Month":"1-08","Usage":295},{"Month":"1-09","Usage":306},{"Month":"1-10","Usage":310},{"Month":"1-11","Usage":320},{"Month":"1-12","Usage":280},{"Month":"2-01","Usage":291},{"Month":"2-02","Usage":312},{"Month":"2-03","Usage":326},{"Month":"2-04","Usage":333},{"Month":"2-05","Usage":346},{"Month":"2-06","Usage":354},{"Month":"2-07","Usage":361},{"Month":"2-08","Usage":372},{"Month":"2-09","Usage":385},{"Month":"2-10","Usage":396},{"Month":"2-11","Usage":409},{"Month":"2-12","Usage":391},{"Month":"3-01","Usage":403},{"Month":"3-02","Usage":412},{"Month":"3-03","Usage":423},{"Month":"3-04","Usage":436},{"Month":"3-05","Usage":447},{"Month":"3-06","Usage":459},{"Month":"3-07","Usage":463},{"Month":"3-08","Usage":471},{"Month":"3-09","Usage":483},{"Month":"3-10","Usage":491},{"Month":"3-11","Usage":509},{"Month":"3-12","Usage":492}]   
+    df = pd.DataFrame(disk_usage)
+
+    # Calculate summary statistics (describe)
+    describe_data = df.describe()
+
+    # Capture the output of df.info() as a string
+    info_output = StringIO()
+    df.info(buf=info_output)
+    info_data = info_output.getvalue()
+    info_output.close()
+
+
+
+    # Pass the model details to the template
+    context = {
+        'model_name': model_name,
+        'data_frame': df.head().to_html(classes='table table-striped table-bordered table-sm'),
+        'describe': describe_data.to_html(classes='table table-striped table-bordered table-sm'),
+        'info': info_data,
+    }
+
+    return render(request,'pgai/disk_usage.html', context)
+
+def Future_trends(request,model_name):
+    pass
+    
+def Stockmarket_prediction(request,model_name):
+    pass
+
+def shampoo_sales_prediction(request):
+
+    shampoo_sales = [ { "Month": "1-01", "Sales": 266.0 }, { "Month": "1-02", "Sales": 145.9 }, { "Month": "1-03", "Sales": 183.1 }, { "Month": "1-04", "Sales": 119.3 }, { "Month": "1-05", "Sales": 180.3 }, { "Month": "1-06", "Sales": 168.5 }, { "Month": "1-07", "Sales": 231.8 }, { "Month": "1-08", "Sales": 224.5 }, { "Month": "1-09", "Sales": 192.8 }, { "Month": "1-10", "Sales": 122.9 }, { "Month": "1-11", "Sales": 336.5 }, { "Month": "1-12", "Sales": 185.9 }, { "Month": "2-01", "Sales": 194.3 }, { "Month": "2-02", "Sales": 149.5 }, { "Month": "2-03", "Sales": 210.1 }, { "Month": "2-04", "Sales": 273.3 }, { "Month": "2-05", "Sales": 191.4 }, { "Month": "2-06", "Sales": 287.0 }, { "Month": "2-07", "Sales": 226.0 }, { "Month": "2-08", "Sales": 303.6 }, { "Month": "2-09", "Sales": 289.9 }, { "Month": "2-10", "Sales": 421.6 }, { "Month": "2-11", "Sales": 264.5 }, { "Month": "2-12", "Sales": 342.3 }, { "Month": "3-01", "Sales": 339.7 }, { "Month": "3-02", "Sales": 440.4 }, { "Month": "3-03", "Sales": 315.9 }, { "Month": "3-04", "Sales": 439.3 }, { "Month": "3-05", "Sales": 401.3 }, { "Month": "3-06", "Sales": 437.4 }, { "Month": "3-07", "Sales": 575.5 }, { "Month": "3-08", "Sales": 407.6 }, { "Month": "3-09", "Sales": 682.0 }, { "Month": "3-10", "Sales": 475.3 }, { "Month": "3-11", "Sales": 581.3 }, { "Month": "3-12", "Sales": 646.9 } ]
+    df = pd.DataFrame(shampoo_sales)
+
+    plt.figure(figsize=(15, 6))
+    df.plot()
+    plt.title(f'Shampoo Sales for 3 years')
+    plt.xlabel('Year-Month')
+    plt.ylabel('Sales')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    chart_filename = f'Shampoo_Sales_chart.png'
+    plt.savefig(os.path.join('empstat/static/pgai/', chart_filename))
+    plt.close()
+    # shampoo_sales_forecast_chart = f""
+
+    fc_chart = f'Shampoo_sales_fc_last_year.png'
+
+    context = {
+        'chart_filename': chart_filename,
+        'fc_chart': fc_chart
+    }
+
+    return render(request, 'pgai/shampoo_sales_fc.html', context)
+
+
+def disk_usage_prediction(request):
+
+    disk_usage = [{"Month":"1-01","Usage":212},{"Month":"1-02","Usage":230},{"Month":"1-04","Usage":238},{"Month":"1-03","Usage":251},{"Month":"1-05","Usage":269},{"Month":"1-06","Usage":276},{"Month":"1-07","Usage":287},{"Month":"1-08","Usage":295},{"Month":"1-09","Usage":306},{"Month":"1-10","Usage":310},{"Month":"1-11","Usage":320},{"Month":"1-12","Usage":280},{"Month":"2-01","Usage":291},{"Month":"2-02","Usage":312},{"Month":"2-03","Usage":326},{"Month":"2-04","Usage":333},{"Month":"2-05","Usage":346},{"Month":"2-06","Usage":354},{"Month":"2-07","Usage":361},{"Month":"2-08","Usage":372},{"Month":"2-09","Usage":385},{"Month":"2-10","Usage":396},{"Month":"2-11","Usage":409},{"Month":"2-12","Usage":391},{"Month":"3-01","Usage":403},{"Month":"3-02","Usage":412},{"Month":"3-03","Usage":423},{"Month":"3-04","Usage":436},{"Month":"3-05","Usage":447},{"Month":"3-06","Usage":459},{"Month":"3-07","Usage":463},{"Month":"3-08","Usage":471},{"Month":"3-09","Usage":483},{"Month":"3-10","Usage":491},{"Month":"3-11","Usage":509},{"Month":"3-12","Usage":492}]   
+    df = pd.DataFrame(disk_usage)
+
+    plt.figure(figsize=(15, 6))
+    df.plot()
+    plt.title(f'Disk Usage for 3 Years')
+    plt.xlabel('Year-Month')
+    plt.ylabel('Disk Usage in GBs')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    chart_filename = f'disk_usage_chart.png'
+    plt.savefig(os.path.join('empstat/static/pgai/', chart_filename))
+    plt.close()
+
+    fc_chart = f'disk_usage_fc_last_year.png'
+
+    context = {
+        'chart_filename': chart_filename,
+        'fc_chart': fc_chart
+    }
+
+    return render(request, 'pgai/disk_usage_fc.html', context)
