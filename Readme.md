@@ -18,7 +18,8 @@ In the realm of forecasting, PostgreAI leverages predefined models to predict fu
 
 ### Distributional analysis of data
 
-![Alt Distributional analysis of manufacturers](image pgai/empstat/static/pgai/make_chart.png)
+![alt "Distributional analysis of manufacturers"](https://github.com/Harisai-edb/postgreAI/blob/main/pgai/empstat/static/pgai/make_chart.png?raw=true)
+
 
 ### Timeseries Analysis
 
