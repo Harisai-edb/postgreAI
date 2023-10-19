@@ -23,6 +23,8 @@ In the realm of forecasting, PostgreAI leverages predefined models to predict fu
 
 ### Timeseries Analysis
 
+![alt "Time series analysis for weather"](https://github.com/Harisai-edb/postgreAI/blob/main/pgai/empstat/static/pgai/Temperature_Avg_vs_Date_chart.png?raw=true)
 
 ### Forecasting
 
+![alt "Capacity planning for disk space"](https://github.com/Harisai-edb/postgreAI/blob/main/pgai/empstat/static/pgai/disk_usage_fc_last_year.png?raw=true)
