@@ -436,7 +436,7 @@ def analyze_sales_data(data):
 
 def forecasting(request):
     # shows forecasting abilities
-    forecasting_abilities = ["Sales_Pridiction","Capacity_Planing","Future_trends","Stockmarket_prediction"]
+    forecasting_abilities = ["Sales_Pridiction","Capacity_Planing","Future_Trends","Stockmarket_Prediction"]
     model_data = []
     for ability in forecasting_abilities:
         model_data.append({
@@ -502,10 +502,10 @@ def Capacity_Planing(request,model_name):
 
     return render(request,'pgai/disk_usage.html', context)
 
-def Future_trends(request,model_name):
+def Future_Trends(request,model_name):
     pass
     
-def Stockmarket_prediction(request,model_name):
+def Stockmarket_Prediction(request,model_name):
     pass
 
 def shampoo_sales_prediction(request):
@@ -516,7 +516,7 @@ def shampoo_sales_prediction(request):
     plt.figure(figsize=(15, 6))
     df.plot()
     plt.title(f'Shampoo Sales for 3 years')
-    plt.xlabel('Year-Month')
+    plt.xlabel('Months')
     plt.ylabel('Sales')
     plt.xticks(rotation=45)
     plt.tight_layout()
@@ -543,7 +543,7 @@ def disk_usage_prediction(request):
     plt.figure(figsize=(15, 6))
     df.plot()
     plt.title(f'Disk Usage for 3 Years')
-    plt.xlabel('Year-Month')
+    plt.xlabel('months')
     plt.ylabel('Disk Usage in GBs')
     plt.xticks(rotation=45)
     plt.tight_layout()
@@ -554,6 +554,7 @@ def disk_usage_prediction(request):
     fc_chart = f'disk_usage_fc_last_year.png'
 
     context = {
+        'max_capacity' : "516.74MB",
         'chart_filename': chart_filename,
         'fc_chart': fc_chart
     }

@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+
+<div class="homebutton">
+    <a href="{% url 'forecasting' %}">Back</a>
+    </div>
+
 <head>
     <title>Disk Usage Details</title>
 </head>
@@ -14,8 +19,11 @@
     
     <h2>Data Frame Info</h2>
     <pre>{{ info|safe }}</pre>
+    <div>
+
+        <a href="{% url 'disk_usage_prediction' %}">Disk Usage Forecasting</a>
+    </div>
     
-    <a href="{% url 'disk_usage_prediction' %}">Disk Usage Forecasting</a>
 
 
 </body>
