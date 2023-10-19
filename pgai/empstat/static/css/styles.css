@@ -9,15 +9,26 @@ body {
     color: #ffffff; /* Set text color to white */
 }
 
+body a {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    text-align: center;
+    font-family: Arial, sans-serif; /* Choose an appropriate font-family */
+    color: #ffffff; /* Set text color to white */
+}
+
 /* Style the h1 element (project title) */
 h1 {
     font-size: 36px;
     margin-top: 100px; /* Adjust as needed for vertical alignment */
+    color: #ffffff
 }
 
 /* Style the h3 element (subtitle) */
 h3 {
     font-size: 24px;
+    color: #ffffff
 }
 
 /* Style the sections */
@@ -27,6 +38,7 @@ section {
     margin: 20px;
     border-radius: 10px;
     text-align: left;
+    
 }
 
 /* Style the section headings (h2) */
@@ -39,6 +51,7 @@ section h2 {
 section p {
     font-size: 16px;
     color: #ffffff; /* Set text color to white */
+    
 }
 
 section a {
@@ -51,6 +64,7 @@ section a {
     margin-top: 10px;
     font-weight: bold;
 }
+
 
 section a:hover {
     background-color: #0056b3; /* Change link background color on hover */

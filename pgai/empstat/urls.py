@@ -15,8 +15,8 @@ urlpatterns = [
     path('forecasting/', views.forecasting, name='forecasting'),
     path('Sales_Pridiction/<str:model_name>/', views.Sales_Pridiction, name='Sales_Pridiction'),
     path('Capacity_Planing/<str:model_name>/', views.Capacity_Planing, name='Capacity_Planing'),
-    path('Future_trends/<str:model_name>/', views.Future_trends, name='Future_trends'),
-    path('Stockmarket_prediction/<str:model_name>/', views.Stockmarket_prediction, name='Stockmarket_prediction'),
+    path('Future_Trends/<str:model_name>/', views.Future_Trends, name='Future_Trends'),
+    path('Stockmarket_prediction/<str:model_name>/', views.Stockmarket_Prediction, name='Stockmarket_Prediction'),
     path('shampoo_sales_prediction/', views.shampoo_sales_prediction, name='shampoo_sales_prediction'),
     path('disk_usage_prediction/', views.disk_usage_prediction, name='disk_usage_prediction'),
    
